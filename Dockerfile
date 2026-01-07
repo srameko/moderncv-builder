@@ -2,7 +2,7 @@ FROM pandoc/latex:latest-alpine
 
 WORKDIR /
 
-RUN apk --no-cache add python
+RUN apk add --no-cache python3
 
 RUN tlmgr update --self skipcache
 RUN tlmgr install \
