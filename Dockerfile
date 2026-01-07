@@ -1,9 +1,8 @@
-FROM pandoc/latex:latest-ubuntu
+FROM pandoc/latex:latest-alpine
 
 WORKDIR /
 
-RUN apt update && apt -y install python3
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+RUN apk update && apk -y install python
 
 RUN tlmgr update --self skipcache
 RUN tlmgr install \
