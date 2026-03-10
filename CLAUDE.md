@@ -30,3 +30,18 @@ Published to Docker Hub as `srameko/moderncv-builder`.
 ## Adding new TeX Live packages
 
 Add to the `tlmgr install` block in `Dockerfile`. Keep packages alphabetically sorted.
+
+## Local testing
+
+```bash
+# Build
+docker build -t moderncv-builder:local .
+
+# Test — mount your .tex project into /
+docker run --rm -v $(pwd):/  moderncv-builder:local latexmk -pdf cv.tex
+```
+
+## .dockerignore
+
+`.git`, `.github`, `.devcontainer`, `*.md` are excluded from build context.
+Do NOT add `Dockerfile` to `.dockerignore`.
