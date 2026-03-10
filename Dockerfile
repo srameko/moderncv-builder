@@ -4,8 +4,8 @@ WORKDIR /
 
 RUN apk add --no-cache python3
 
-RUN tlmgr update --self skipcache && \
-    tlmgr install \
+RUN tlmgr update --self --verify-repo=none skipcache && \
+    tlmgr --verify-repo=none install \
       academicons \
       arydshln \
       etextools \
