@@ -15,7 +15,5 @@ Based on `pandoc/latex:3.6.3-alpine` with the following TeX Live packages:
 ## Usage
 
 ```bash
-docker run --rm -v $(pwd):/data srameko/moderncv-builder latexmk -pdf cv.tex
+docker run --rm -v $(pwd):/ srameko/moderncv-builder latexmk -pdf cv.tex
 ```
-
-The container uses `/data` as the working directory — mount your project there.
