@@ -14,7 +14,7 @@ Published to Docker Hub as `srameko/moderncv-builder`.
 ## CI/CD
 
 - `docker-publish.yml` — builds and pushes on push to main; uses `docker/build-push-action` with GHA cache; requires `docker/setup-buildx-action` for GHA cache to work
-- `trivy.yml` — CVE scan on push/PR + weekly schedule (Monday 06:30 UTC); results in GitHub Security tab; does a fresh docker build (no cache)
+- `trivy.yml` — CVE scan on push/PR + weekly schedule (Monday 06:30 UTC); results in GitHub Security tab; does a fresh docker build (no cache); fails only on CRITICAL/HIGH with a fix available (`--ignore-unfixed`, `exit-code=1`); when it fails, check Dependabot PRs for a base image update
 - `dependabot.yml` — weekly PRs for github-actions and docker base image updates
 
 ## GitHub Actions conventions
