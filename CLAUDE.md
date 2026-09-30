@@ -15,6 +15,7 @@ Published to Docker Hub as `srameko/moderncv-builder`.
 
 - `docker-publish.yml` — builds and pushes on push to main; uses `docker/build-push-action` with GHA cache; requires `docker/setup-buildx-action` for GHA cache to work
 - `trivy.yml` — CVE scan on push/PR + weekly schedule (Monday 06:30 UTC); results in GitHub Security tab; does a fresh docker build (no cache); fails only on CRITICAL/HIGH with a fix available (`--ignore-unfixed`, `exit-code=1`); when it fails, check Dependabot PRs for a base image update; if no new base image is available, `apk upgrade --no-cache` in the Dockerfile pulls Alpine package fixes without changing the base image
+- `smoke-test.yml` — on PR (and manually) builds the image and compiles `test/cv.tex` (sample moderncv CV: `sans`, `classic`, `blue`, Czech babel, social icons) with `pdflatex -halt-on-error`, the same as the CV repos' CI; catches missing TeX packages before publish (e.g. moderncv 2.6+ needs `fontawesome6`, which caused the CV builds to fail with `fontawesome6.sty not found`). When moderncv starts requiring a new package, add it to the Dockerfile and, if a new feature needs it, extend `test/cv.tex`
 - `dependabot.yml` — weekly PRs for github-actions and docker base image updates
 
 ## GitHub Actions conventions
@@ -43,5 +44,5 @@ docker run --rm -v $(pwd):/  moderncv-builder:local latexmk -pdf cv.tex
 
 ## .dockerignore
 
-`.git`, `.github`, `.devcontainer`, `*.md` are excluded from build context.
+`.git`, `.github`, `.devcontainer`, `test`, `*.md` are excluded from build context.
 Do NOT add `Dockerfile` to `.dockerignore`.

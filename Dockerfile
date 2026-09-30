@@ -11,6 +11,7 @@ RUN tlmgr update --self --verify-repo=none skipcache && \
       arydshln \
       etextools \
       fontawesome5 \
+      fontawesome6 \
       ifmtarg \
       latexmk \
       moderncv \
