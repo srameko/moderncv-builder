@@ -1,0 +1,34 @@
+% Smoke test image: ukázkový životopis s vlastnostmi, které používají skutečné CV
+% (třída se sans, styl classic, barva blue, český babel, ikony sociálních sítí).
+% Data jsou vymyšlená. Když se přeloží, image má všechny TeX balíčky, které moderncv potřebuje.
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[czech]{babel}
+\usepackage{etoolbox}
+\usepackage[scale=0.8]{geometry}
+
+\name{Jan}{Novák}
+\title{Ukázkový životopis}
+\address{Ulice 1}{110 00 Praha}{Česko}
+\phone[mobile]{+420~123~456~789}
+\email{jan.novak@example.com}
+\homepage{example.com}
+\social[linkedin]{jannovak}
+\social[github]{jannovak}
+
+\begin{document}
+\makecvtitle
+
+\section{Vzdělání}
+\cventry{2010--2014}{Inženýr}{Univerzita}{Brno}{}{Příliš žluťoučký kůň úpěl ďábelské ódy.}
+
+\section{Jazyky}
+\cvline{Jazyky}{čeština, angličtina}
+\end{document}

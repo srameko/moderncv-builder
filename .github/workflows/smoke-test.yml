@@ -1,0 +1,40 @@
+name: Smoke Test
+
+# Sestaví image a přeloží ukázkový životopis (test/cv.tex) stejným příkazem jako CI životopisů.
+# Chytí chybějící TeX balíčky (např. fontawesome6 pro moderncv 2.6+) dřív, než se image publikuje.
+
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    name: Build image and compile sample CV
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build image
+        run: docker build -t moderncv-builder:test .
+
+      - name: Compile sample CV
+        run: |
+          docker run --rm --entrypoint "" \
+            -v "$PWD/test:/work" -w /work \
+            moderncv-builder:test \
+            pdflatex -halt-on-error -interaction=nonstopmode cv.tex
+
+      - name: Check PDF was produced
+        run: test -s test/cv.pdf
