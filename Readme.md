@@ -9,7 +9,7 @@ Docker image for building [moderncv](https://ctan.org/pkg/moderncv) LaTeX docume
 
 ## Included packages
 
-Based on `pandoc/latex:3.6.3-alpine` with the following TeX Live packages:
+Based on `pandoc/latex:3.11.0-alpine` with the following TeX Live packages:
 `academicons`, `arydshln`, `etextools`, `fontawesome5`, `fontawesome6`, `ifmtarg`, `latexmk`, `moderncv`, `multirow`, `texliveonfly`, `xpatch`, `xstring`, `babel-czech`, `hyphen-czech`, `ec`
 
 ## Usage
