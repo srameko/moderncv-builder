@@ -7,7 +7,7 @@ Published to Docker Hub as `srameko/moderncv-builder`.
 
 ## Key facts
 
-- Base image: `pandoc/latex:3.9.0-alpine` — update version here and in README together
+- Base image: the `FROM` line in `Dockerfile` (pandoc/latex, Alpine variant) — when it changes, update the version quoted in `Readme.md` too
 - `WORKDIR /` is intentional — do NOT change it, the image is used in another repo that depends on this mount path
 - Docker Hub secret is named `DOCKER_PASSWORD` (it's actually an access token, just named that way)
 
