@@ -1,4 +1,4 @@
-FROM pandoc/latex:3.11.0-alpine
+FROM pandoc/latex:3.14.0-alpine
 
 WORKDIR /
 
